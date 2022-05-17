@@ -74,12 +74,12 @@ public class PlayerBehavior : ActorBase
         base.OnMoveExit();
     }
     #endregion
-    public override void KnockBack(Vector3 direction)
+    public override void KnockBack(Vector3 direction, float knockBackTime)
     {
-        base.KnockBack(direction);
+        base.KnockBack(direction, knockBackTime);
         state = ActorState.Stun;
         StopAllCoroutines();
-        StartCoroutine(ResetKnockBack());
+        StartCoroutine(ResetKnockBack(knockBackTime));
     }
     public override void Attack()
     {

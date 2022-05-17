@@ -31,7 +31,7 @@ public class BulletBase : MonoBehaviour
             float damage = bulletData.GetDamaged();
             thisActor.MinusHealth(damage);
             Vector3 direction = (hit.transform.position - transform.position).normalized * bulletData.knockBackFloat;
-            thisActor.KnockBack(direction);
+            thisActor.KnockBack(direction, bulletData.knockBackTime);
             Debug.LogWarning("Actor: " + hit.name + "; Damaged: " + damage);
             Destroy(gameObject);
         }

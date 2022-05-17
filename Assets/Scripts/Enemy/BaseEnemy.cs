@@ -152,13 +152,13 @@ public class BaseEnemy : ActorBase
             myAimTransform.localScale = scale;
         }
     }
-    public override void KnockBack(Vector3 direction)
+    public override void KnockBack(Vector3 direction, float knockBackTime)
     {
-        base.KnockBack(direction);
+        base.KnockBack(direction, knockBackTime);
         state = ActorState.KnockBack;
         rb.velocity = direction;
         StopAllCoroutines();
-        StartCoroutine(ResetKnockBack());
+        StartCoroutine(ResetKnockBack(knockBackTime));
     }
     public override void Death()
     {

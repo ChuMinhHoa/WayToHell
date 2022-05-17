@@ -951,6 +951,7 @@ GameObject:
   - component: {fileID: 901050441}
   - component: {fileID: 901050442}
   - component: {fileID: 901050443}
+  - component: {fileID: 901050444}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1000,11 +1001,11 @@ MonoBehaviour:
     gem: 0
     coin: 0
     property:
-      m_MaxHealth: 10
-      m_MaxShield: 10
-      m_Shield: 10
-      m_Health: 10
-      m_Speed: 10
+      m_MaxHealth: 100
+      m_MaxShield: 100
+      m_Shield: 100
+      m_Health: 100
+      m_Speed: 3
   enemyProfile: {fileID: 11400000, guid: 728ca001bbdcdfc46a5fe78ee12fcb95, type: 2}
 --- !u!114 &901050442
 MonoBehaviour:
@@ -1033,6 +1034,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinemachineCam: {fileID: 320342179}
+--- !u!114 &901050444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901050438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f537d26efd8c34c82f2d45ca8e0b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapProfile: {fileID: 11400000, guid: 9d8721440972c8648a7a59c119c41b07, type: 2}
 --- !u!4 &901957404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 901957404, guid: 7c8bae19adfdd804b995a389da08b358, type: 3}

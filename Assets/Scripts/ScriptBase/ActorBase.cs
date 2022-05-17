@@ -42,9 +42,9 @@ public class ActorBase : MonoBehaviour
     public virtual void OnMoveExecute() { }
     public virtual void OnMoveExit() { }
     public virtual void Attack() { }
-    public virtual void KnockBack(Vector3 direction) { }
-    public virtual IEnumerator ResetKnockBack() {
-        yield return new WaitForSeconds(.2f);
+    public virtual void KnockBack(Vector3 direction, float timeKnockBack) { }
+    public virtual IEnumerator ResetKnockBack(float knockBackTime) {
+        yield return new WaitForSeconds(knockBackTime);
         state = ActorState.Idle;
         rb.velocity = Vector2.zero;
     }

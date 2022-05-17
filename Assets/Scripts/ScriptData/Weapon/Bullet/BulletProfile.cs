@@ -25,12 +25,14 @@ public class BulletData {
     public float bulletSpeed;
     public float persentScrits;
     public float knockBackFloat;
+    public float knockBackTime;
     public void InitData(BulletData bulletData) {
         bulletName = bulletData.bulletName;
         bulletType = bulletData.bulletType;
         bulletDamage = bulletData.bulletDamage;
         bulletSpeed = bulletData.bulletSpeed;
         knockBackFloat = bulletData.knockBackFloat;
+        knockBackTime = bulletData.knockBackTime;
     }
     public float GetDamaged() {
         int randomCrit = Random.Range(0, 100);
