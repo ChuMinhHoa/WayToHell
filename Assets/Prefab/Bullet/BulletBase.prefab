@@ -53,10 +53,10 @@ MonoBehaviour:
     bulletDamage: 0
     bulletSpeed: 0
     persentScrits: 0
+    knockBackFloat: 0
+    knockBackTime: 0
   rb_Bullet: {fileID: 3421843252770619982}
-  whatCanDamaged:
-    serializedVersion: 2
-    m_Bits: 128
+  whatCanDamaged: 7
   impactRange: 0.04
 --- !u!212 &3421843252770619983
 SpriteRenderer:

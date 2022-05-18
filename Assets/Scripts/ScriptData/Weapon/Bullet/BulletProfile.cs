@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum BulletType { 
-    pistolBullet
+    pistolBullet,
+    pistolBulletEnemy
 }
 [CreateAssetMenu(fileName = "BulletProFile", menuName = "ScriptableObjects/New Bullet Profile")]
 public class BulletProfile : ScriptableObject
@@ -21,24 +22,15 @@ public class BulletProfile : ScriptableObject
 public class BulletData {
     public string bulletName;
     public BulletType bulletType;
-    public float bulletDamage;
     public float bulletSpeed;
-    public float persentScrits;
     public float knockBackFloat;
     public float knockBackTime;
     public void InitData(BulletData bulletData) {
         bulletName = bulletData.bulletName;
         bulletType = bulletData.bulletType;
-        bulletDamage = bulletData.bulletDamage;
         bulletSpeed = bulletData.bulletSpeed;
         knockBackFloat = bulletData.knockBackFloat;
         knockBackTime = bulletData.knockBackTime;
     }
-    public float GetDamaged() {
-        int randomCrit = Random.Range(0, 100);
-        float resultDamage = bulletDamage;
-        if (randomCrit > persentScrits)
-            resultDamage *= 2;
-        return resultDamage;
-    }
+    
 }

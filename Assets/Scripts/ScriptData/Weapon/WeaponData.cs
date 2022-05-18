@@ -25,6 +25,7 @@ public class SAOWeaponData
     public Sprite weaponSpite;
     public float countDownAttackTime;
     public float attackRange;
+    public float persentScrits;
 
     public void InitData(SAOWeaponData weaponData) {
         weaponName = weaponData.weaponName;
@@ -34,5 +35,13 @@ public class SAOWeaponData
         weaponSpite = weaponData.weaponSpite;
         countDownAttackTime = weaponData.countDownAttackTime;
         attackRange = weaponData.attackRange;
+    }
+    public float GetDamaged()
+    {
+        int randomCrit = Random.Range(0, 100);
+        float resultDamage = weaponDamage;
+        if (randomCrit > persentScrits)
+            resultDamage *= 2;
+        return resultDamage;
     }
 }

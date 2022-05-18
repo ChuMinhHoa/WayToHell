@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 public enum EnemyType { 
-    NormalEnemmy
+    GunEnemy,
+    SwordEnemy
 }
 public class BaseEnemy : ActorBase
 {

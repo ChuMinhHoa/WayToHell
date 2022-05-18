@@ -9,7 +9,8 @@ public enum WeaponState {
 public enum WeaponType { 
     Gun,
     GunEnemy,
-    Sword
+    Sword,
+    SwordEnemy
 }
 public class WeaponBase : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class WeaponBase : MonoBehaviour
     public SAOWeaponData weaponData;
     public float aimAngle;
     private float coldDown;
+    public Animator anim;
+    [Range(0, 2)]
+    public float animAttackTime;
     public virtual void Start() {
         InitData();
     }

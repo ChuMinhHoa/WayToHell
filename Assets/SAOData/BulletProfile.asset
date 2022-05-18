@@ -15,8 +15,11 @@ MonoBehaviour:
   bulletDatas:
   - bulletName: PistolBullet
     bulletType: 0
-    bulletDamage: 10
     bulletSpeed: 250
-    persentScrits: 10
     knockBackFloat: 3
     knockBackTime: 0.1
+  - bulletName: PistolBulletEnemy
+    bulletType: 1
+    bulletSpeed: 150
+    knockBackFloat: 0
+    knockBackTime: 0.2

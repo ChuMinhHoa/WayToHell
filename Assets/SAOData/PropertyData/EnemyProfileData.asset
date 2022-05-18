@@ -20,3 +20,10 @@ MonoBehaviour:
       m_Shield: 100
       m_Health: 100
       m_Speed: 2
+  - enemyType: 1
+    property:
+      m_MaxHealth: 100
+      m_MaxShield: 100
+      m_Shield: 100
+      m_Health: 100
+      m_Speed: 2

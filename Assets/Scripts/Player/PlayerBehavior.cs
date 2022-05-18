@@ -95,4 +95,9 @@ public class PlayerBehavior : ActorBase
         base.AddHealth(value);
         ProfileManager.instance.playerProfile.SaveProfile(this.property);
     }
+    public override void MinusHealth(float value)
+    {
+        base.MinusHealth(value);
+        ProfileManager.instance.playerProfile.SaveProfile(this.property);
+    }
 }
