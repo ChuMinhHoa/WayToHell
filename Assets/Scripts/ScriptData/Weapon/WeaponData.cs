@@ -26,6 +26,7 @@ public class SAOWeaponData
     public float countDownAttackTime;
     public float attackRange;
     public float persentScrits;
+    public GameObject weaponObject;
 
     public void InitData(SAOWeaponData weaponData) {
         weaponName = weaponData.weaponName;

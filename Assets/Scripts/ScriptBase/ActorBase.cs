@@ -38,9 +38,13 @@ public class ActorBase : MonoBehaviour
     public virtual void OnKnockBackEnter() { }
     public virtual void OnKnockBackExecute() { }
     public virtual void OnKnockBackEnd() { }
-    public virtual void OnMoveEnter() { }
+    public virtual void OnMoveEnter() {
+        anim.SetBool("move", true);
+    }
     public virtual void OnMoveExecute() { }
-    public virtual void OnMoveExit() { }
+    public virtual void OnMoveExit() {
+        anim.SetBool("move", false);
+    }
     public virtual void Attack() { }
     public virtual void KnockBack(Vector3 direction, float timeKnockBack) { }
     public virtual IEnumerator ResetKnockBack(float knockBackTime) {
@@ -83,6 +87,8 @@ public class ActorBase : MonoBehaviour
             Death();
     }
     public virtual void Death() {
+        anim.SetTrigger("death");
+        state = ActorState.Death;
         Debug.Log(gameObject.name + " die.");
     }
 }

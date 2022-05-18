@@ -52,6 +52,7 @@ public class WeaponBase : MonoBehaviour
     }
     public virtual void InitData() {
         weaponData.InitData(WeaponProfileManager.instance.weaponData.GetWeaponData(weaponType));
+        transform.rotation = new Quaternion(0, 0, 0, 0);
     }
     public virtual void WeaponIdle() { }
     public virtual void WeaponAttack(float aimAngle) { }

@@ -21,6 +21,7 @@ MonoBehaviour:
     countDownAttackTime: 1
     attackRange: 0
     persentScrits: 50
+    weaponObject: {fileID: 5684093821140638102, guid: 47e80ddaa58e47b488ce1afde25a600b, type: 3}
   - weaponName: Gun
     weaponType: 0
     weaponDamage: 20
@@ -29,6 +30,7 @@ MonoBehaviour:
     countDownAttackTime: 0.5
     attackRange: 0
     persentScrits: 30
+    weaponObject: {fileID: 17450976381728482, guid: 7c8bae19adfdd804b995a389da08b358, type: 3}
   - weaponName: PistolEnemy
     weaponType: 1
     weaponDamage: 20
@@ -37,6 +39,7 @@ MonoBehaviour:
     countDownAttackTime: 2
     attackRange: 0
     persentScrits: 30
+    weaponObject: {fileID: 17450976381728482, guid: aecc3f831c19db145aa4b4c6af8e5cd7, type: 3}
   - weaponName: Sword Enemy
     weaponType: 3
     weaponDamage: 30
@@ -45,3 +48,4 @@ MonoBehaviour:
     countDownAttackTime: 4
     attackRange: 0
     persentScrits: 50
+    weaponObject: {fileID: 8884657417225594467, guid: 72a5310f1d9eeac4ba75294ba74ae959, type: 3}

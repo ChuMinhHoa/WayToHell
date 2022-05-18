@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerBehavior : ActorBase
 {
+    [Header("==========Player==========")]
     public PlayerAimFollowMousePosition aimFollowMousePosition;
+    public List<SAOWeaponData> weapons;
+    public GameObject handEquip;
+    public override void Start()
+    {
+        base.Start();
+        InitWeapon();
+    }
     public override void Update()
     {
         base.Update();
@@ -18,14 +26,36 @@ public class PlayerBehavior : ActorBase
         base.InitProperty();
         property = ProfileManager.instance.playerProfile.property;
     }
+    public void InitWeapon() {
+        ClearWeapon();
+        weapons.Clear();
+        List<WeaponType> weaponTypes = ProfileManager.instance.playerProfile.weapons;
+        for (int i = 0; i < weaponTypes.Count; i++)
+            weapons.Add(WeaponProfileManager.instance.weaponData.GetWeaponData(weaponTypes[i]));
+        CreateWeapon(0);
+    }
+    public virtual void ClearWeapon() {
+        Transform[] weaponObjectsCurrent = handEquip.GetComponentsInChildren<Transform>();
+        if (weaponObjectsCurrent.Length > 1)
+            for (int i = 1; i < weaponObjectsCurrent.Length; i++)
+                Destroy(weaponObjectsCurrent[i].gameObject);
+    }
+    public virtual void CreateWeapon(int indexWeaponCreate) {
+        GameObject weaponCreate = Instantiate(weapons[indexWeaponCreate].weaponObject, handEquip.transform.position, Quaternion.identity, handEquip.transform);
+        WeaponBase weaponBase = weaponCreate.GetComponent<WeaponBase>();
+        currentWeapon = weaponBase;
+    }
     void InputHandle() {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         movement = new Vector2(horizontal, vertical);
         if (movement != Vector2.zero)
             state = ActorState.Move;
+        else state = ActorState.Idle;
         if (state != ActorState.Death && Input.GetMouseButtonDown(0))
             Attack();
+        if (Input.GetKeyDown(KeyCode.Q))
+            SwitchWeapon();
     }
     private void FixedUpdate()
     {
@@ -100,4 +130,56 @@ public class PlayerBehavior : ActorBase
         base.MinusHealth(value);
         ProfileManager.instance.playerProfile.SaveProfile(this.property);
     }
+    public override void Death()
+    {
+        base.Death();
+        aimFollowMousePosition.PlayerDie();
+    }
+    #region==========Weapon===============
+    public void SwitchWeapon() {
+        if (CurrentWeaponIndex() == -1)
+            return;
+        if (CurrentWeaponIndex() == 1)
+        {
+            ClearWeapon();
+            CreateWeapon(0);
+        }
+        else
+        {
+            ClearWeapon();
+            CreateWeapon(1);
+        }
+    }
+    public int CurrentWeaponIndex() {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            if (currentWeapon.weaponType == weapons[i].weaponType)
+                return i;
+        }
+        return -1;
+    }
+    public void ChangeWeapon(SAOWeaponData weaponData, int weaponRemoveIndex) {
+        if (weaponRemoveIndex < weapons.Count)
+            ProfileManager.instance.playerProfile.ChangeWeapon(weaponData.weaponType, weaponRemoveIndex);
+        else return;
+        InitWeapon();
+    }
+    public void AddWeapon(SAOWeaponData weaponData) {
+        ProfileManager.instance.playerProfile.AddWeapon(weaponData.weaponType);
+        InitWeapon();
+    }
+    public bool CheckWeaponSlotFull(){
+        return weapons.Count == 2;
+    }
+    public void RemoveWeapon(WeaponType weaponType) {
+        foreach (SAOWeaponData data in weapons)
+        {
+            if (data.weaponType == weaponType)
+            {
+                weapons.Remove(data);
+                break;
+            }
+        }
+    }
+    #endregion
 }

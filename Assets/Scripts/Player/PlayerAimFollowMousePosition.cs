@@ -7,9 +7,12 @@ public class PlayerAimFollowMousePosition : MonoBehaviour
     public GameObject myAim;
     public SpriteRenderer avatarSpriteRenderer;
     Vector2 mousePos;
+    bool stopFollow;
     public float angle;
     private void FixedUpdate()
     {
+        if (stopFollow)
+            return;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePos - (Vector2)transform.position;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -26,5 +29,8 @@ public class PlayerAimFollowMousePosition : MonoBehaviour
             scale.y *= -1;
             myAimTransform.localScale = scale;
         }
+    }
+    public void PlayerDie() {
+        stopFollow = true;
     }
 }

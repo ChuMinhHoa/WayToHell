@@ -61,6 +61,7 @@ public class PlayerProfile
     public float gem;
     public float coin;
     public Property property;
+    public List<WeaponType> weapons;
     public void SaveProfile(Property _property) 
     {
         property = _property;
@@ -74,7 +75,14 @@ public class PlayerProfile
             coin = playerProfile.coin;
             gem = playerProfile.gem;
             property.LoadData(playerProfile.property);
+            weapons = playerProfile.weapons;
         }
         else { SaveProfile(this.property); }
+    }
+    public void AddWeapon(WeaponType weaponType) {
+        weapons.Add(weaponType);
+    }
+    public void ChangeWeapon(WeaponType weaponType, int weaponChangeIndex) {
+        weapons[weaponChangeIndex] = weaponType;
     }
 }

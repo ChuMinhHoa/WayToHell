@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 101
-  m_Sprite: {fileID: -3664594969507694454, guid: 483ae942b906a644084bc5cc186873a8, type: 3}
+  m_Sprite: {fileID: 1497478763720940017, guid: 483ae942b906a644084bc5cc186873a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8884657417225594467}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.844, y: 1.573, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponState: 0
-  weaponType: 2
+  weaponType: 3
   weaponData:
     weaponName: 
     weaponType: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
     countDownAttackTime: 0
     attackRange: 0
     persentScrits: 0
+    weaponObject: {fileID: 0}
   aimAngle: 0
   anim: {fileID: 8643970224858481254}
   animAttackTime: 0.5
