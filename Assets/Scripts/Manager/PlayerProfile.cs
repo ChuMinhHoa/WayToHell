@@ -62,12 +62,15 @@ public class PlayerProfile
     public float coin;
     public Property property;
     public List<WeaponType> weapons;
-    public void SaveProfile(Property _property) 
+    public int mapIndex;
+    public int levelInMap;
+    public void SaveProfile() 
     {
-        property = _property;
+        property = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().property;
         PlayerPrefs.SetString(Keys.playerProfile,JsonUtility.ToJson(this));
     }
     public void LoadProfile() {
+        SaveProfile();
         if (PlayerPrefs.HasKey(Keys.playerProfile))
         {
             string jsonProfile = PlayerPrefs.GetString(Keys.playerProfile);
@@ -76,8 +79,10 @@ public class PlayerProfile
             gem = playerProfile.gem;
             property.LoadData(playerProfile.property);
             weapons = playerProfile.weapons;
+            mapIndex = playerProfile.mapIndex;
+            levelInMap = playerProfile.levelInMap;
         }
-        else { SaveProfile(this.property); }
+        else { SaveProfile(); }
     }
     public void AddWeapon(WeaponType weaponType) {
         weapons.Add(weaponType);

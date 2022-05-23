@@ -20,16 +20,16 @@ public class WeaponSwordBase : WeaponBase
 
     public virtual IEnumerator ImpactOtherCheck() {
         yield return new WaitForSeconds(animAttackTime);
-        Collider2D hit = Physics2D.OverlapCircle(checkDamagePoint.position, checkDamageRange, whatCanDamage);
-        if (hit != null)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(checkDamagePoint.position, checkDamageRange, whatCanDamage);
+        for (int i = 0; i < hits.Length; i++)
         {
-            ActorBase thisActor = hit.GetComponent<ActorBase>();
+            ActorBase thisActor = hits[i].GetComponent<ActorBase>();
             float damage = weaponData.GetDamaged();
             thisActor.MinusHealth(damage);
-            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.SwordHitEffect), hit.transform.position);
-            Vector3 direction = (hit.transform.position - checkDamagePoint.position).normalized * knockBackFloat;
+            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.SwordHitEffect), hits[i].transform.position);
+            Vector3 direction = (hits[i].transform.position - checkDamagePoint.position).normalized * knockBackFloat;
             thisActor.KnockBack(direction, knockBackTime);
-            Debug.LogWarning("Actor: " + hit.name + "; Damaged: " + damage);
+            AudioManager.instance.Play(SoundName.sword);
         }
         anim.ResetTrigger("attack");
     }

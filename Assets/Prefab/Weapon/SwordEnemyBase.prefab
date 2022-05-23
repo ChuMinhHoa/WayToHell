@@ -143,13 +143,15 @@ MonoBehaviour:
   aimAngle: 0
   anim: {fileID: 8643970224858481254}
   animAttackTime: 0.5
+  skillBases: []
+  isUsingSkill: 0
   checkDamagePoint: {fileID: 8894991117740726173}
   checkDamageRange: 0.15
   whatCanDamage:
     serializedVersion: 2
     m_Bits: 512
   knockBackFloat: 2
-  knockBackTime: 0.1
+  knockBackTime: 0.25
 --- !u!95 &8643970224858481254
 Animator:
   serializedVersion: 3

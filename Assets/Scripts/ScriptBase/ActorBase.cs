@@ -19,6 +19,7 @@ public class ActorBase : MonoBehaviour
     public Animator anim;
     public Vector2 movement;
     public WeaponBase currentWeapon;
+    public SpriteRenderer avatar;
     public virtual void Start() {
         InitStateMachine();
         InitProperty();
@@ -57,6 +58,14 @@ public class ActorBase : MonoBehaviour
     }
     public virtual void MinusHealth(float value) {
         property.MinusHealth(value);
+        anim.SetTrigger("hurt");
+        CameraControllerCustom.instance.ShakeScene(1);
+        StopAllCoroutines();
+        StartCoroutine(ResetHurt());
+    }
+    public virtual IEnumerator ResetHurt() {
+        yield return new WaitForSeconds(1f);
+        anim.ResetTrigger("hurt");
     }
     public virtual void AddShield(float value)
     {

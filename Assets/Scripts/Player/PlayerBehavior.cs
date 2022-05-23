@@ -20,6 +20,7 @@ public class PlayerBehavior : ActorBase
         if (state == ActorState.Stun)
             return;
         InputHandle();
+        currentWeapon.aimAngle = aimFollowMousePosition.angle;
     }
     public override void InitProperty()
     {
@@ -97,7 +98,7 @@ public class PlayerBehavior : ActorBase
     public override void OnMoveExecute()
     {
         base.OnMoveExecute();
-        rb.MovePosition(rb.position + movement * ProfileManager.instance.playerProfile.property.m_Speed * Time.deltaTime);
+        rb.MovePosition(rb.position + movement * ProfileManager.instance.playerProfile.property.m_Speed * Time.fixedDeltaTime);
     }
     public override void OnMoveExit()
     {
@@ -123,12 +124,14 @@ public class PlayerBehavior : ActorBase
     public override void AddHealth(float value)
     {
         base.AddHealth(value);
-        ProfileManager.instance.playerProfile.SaveProfile(this.property);
+        ProfileManager.instance.playerProfile.SaveProfile();
     }
     public override void MinusHealth(float value)
     {
         base.MinusHealth(value);
-        ProfileManager.instance.playerProfile.SaveProfile(this.property);
+        ProfileManager.instance.playerProfile.SaveProfile();
+        CameraControllerCustom.instance.PlayerHurt();
+        AudioManager.instance.Play(SoundName.hurt);
     }
     public override void Death()
     {

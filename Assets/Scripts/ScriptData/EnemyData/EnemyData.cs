@@ -5,4 +5,5 @@ using UnityEngine;
 public class EnemyData {
     public EnemyType enemyType;
     public Property property;
+    public GameObject enemyPrefab;
 }

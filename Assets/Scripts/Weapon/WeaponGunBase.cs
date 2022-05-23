@@ -16,6 +16,7 @@ public class WeaponGunBase : WeaponBase
     }
     public virtual IEnumerator GunShot(float aimAngle) {
         yield return new WaitForSeconds(animAttackTime);
+        AudioManager.instance.Play(SoundName.pistolShot);
         GameObject bulletCreated = Instantiate(bullet, shotPoint.position, Quaternion.identity);
         bulletCreated.transform.eulerAngles = new Vector3(0, 0, aimAngle);
         bulletCreated.GetComponent<BulletBase>().weaponData = weaponData;

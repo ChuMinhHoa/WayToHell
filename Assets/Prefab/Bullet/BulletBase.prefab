@@ -47,16 +47,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletType: 0
+  weaponData:
+    weaponName: 
+    weaponType: 0
+    weaponDamage: 0
+    weaponIcon: {fileID: 0}
+    weaponSpite: {fileID: 0}
+    countDownAttackTime: 0
+    attackRange: 0
+    persentScrits: 0
+    weaponObject: {fileID: 0}
   bulletData:
     bulletName: 
     bulletType: 0
-    bulletDamage: 0
     bulletSpeed: 0
-    persentScrits: 0
     knockBackFloat: 0
     knockBackTime: 0
   rb_Bullet: {fileID: 3421843252770619982}
-  whatCanDamaged: 7
+  whatCanDamaged:
+    serializedVersion: 2
+    m_Bits: 128
   impactRange: 0.04
 --- !u!212 &3421843252770619983
 SpriteRenderer:

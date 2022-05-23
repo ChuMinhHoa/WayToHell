@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "EnemyProfile", menuName = "ScriptableObjects/NewEnemyProfile")]
-public class EnemyProfileData : ScriptableObject
+[System.Serializable]
+public class EnemyProfileData
 {
     public List<EnemyData> enemyDatas;
     public EnemyData GetEnemyData(EnemyType enemyType) {

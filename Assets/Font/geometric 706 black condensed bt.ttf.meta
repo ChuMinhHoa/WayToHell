@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ab0a26db84d06ff4daa18e338a25f9fc
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Geometr706 BlkCn BT
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 597895cb5d66f2140ab844e008dd1573, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

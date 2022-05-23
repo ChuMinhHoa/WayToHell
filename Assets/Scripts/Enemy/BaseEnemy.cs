@@ -164,6 +164,7 @@ public class BaseEnemy : ActorBase
     public override void Death()
     {
         base.Death();
+        GameManager.instance.spawnManager.MinusEnemiesWayCount();
         Destroy(gameObject);
     }
     private void OnDrawGizmos()
