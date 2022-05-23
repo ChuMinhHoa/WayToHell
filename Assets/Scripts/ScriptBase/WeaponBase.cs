@@ -10,7 +10,8 @@ public enum WeaponType {
     Gun,
     GunEnemy,
     Sword,
-    SwordEnemy
+    SwordEnemy,
+    SwordMummy
 }
 public class WeaponBase : MonoBehaviour
 {

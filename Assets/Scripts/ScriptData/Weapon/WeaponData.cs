@@ -24,7 +24,6 @@ public class SAOWeaponData
     public Sprite weaponIcon;
     public Sprite weaponSpite;
     public float countDownAttackTime;
-    public float attackRange;
     public float persentScrits;
     public GameObject weaponObject;
 
@@ -35,7 +34,6 @@ public class SAOWeaponData
         weaponIcon = weaponData.weaponIcon;
         weaponSpite = weaponData.weaponSpite;
         countDownAttackTime = weaponData.countDownAttackTime;
-        attackRange = weaponData.attackRange;
     }
     public float GetDamaged()
     {

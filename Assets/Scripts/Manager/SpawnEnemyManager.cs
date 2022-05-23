@@ -57,8 +57,15 @@ public class SpawnEnemyManager:MonoBehaviour {
         {
             EnemyType enemyType = levelData.wayDatas[currentWay].enemyTypes[i];
             GameObject enemyObject = ProfileManager.instance.enemyProfile.GetEnemyData(enemyType).enemyPrefab;
-            Instantiate(enemyObject, RandomPositionSpawn(), Quaternion.identity);
+            Vector3 spawnPoint = RandomPositionSpawn();
+            EffectData effectData = EffectManager.instance.GetEffectData(enemyType);
+            EffectManager.instance.InstatiateEffect(effectData, spawnPoint);
+            StartCoroutine(SpawnAtterEffect(enemyObject, spawnPoint));
         }
+    }
+    IEnumerator SpawnAtterEffect(GameObject enemy, Vector3 spawnPoint) {
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(enemy, spawnPoint, Quaternion.identity);
     }
     Vector3 RandomPositionSpawn()
     {

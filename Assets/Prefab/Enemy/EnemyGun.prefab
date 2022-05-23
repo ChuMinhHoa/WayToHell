@@ -223,13 +223,12 @@ MonoBehaviour:
   anim: {fileID: 4518398334042938678}
   movement: {x: 0, y: 0}
   currentWeapon: {fileID: 4506252518725972489}
-  avatar: {fileID: 0}
+  avatar: {fileID: 4518398334042938677}
   enemyType: 0
   distanceToStop: 1.61
   targetPlayerTransform: {fileID: 0}
   currentAimAngle: 0
   myAim: {fileID: 4518398333687019120}
-  avatarSpriteRenderer: {fileID: 4518398334042938677}
   currentWayPoint: 0
   distanceToNextWayPoint: 0.2
 --- !u!50 &4518398334368619377

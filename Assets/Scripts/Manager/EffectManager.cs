@@ -22,4 +22,17 @@ public class EffectManager : MonoBehaviour
         }
         return null;
     }
+    public EffectData GetEffectData(EnemyType enemyType) {
+        switch (enemyType)
+        {
+            case EnemyType.GunEnemy:
+                return GetEffectData(EffectName.EnemySpawnEffect);
+            case EnemyType.SwordEnemy:
+                return GetEffectData(EffectName.EnemySpawnEffect);
+            case EnemyType.MummyEnemy:
+                return GetEffectData(EffectName.MummySpawnEffect);
+            default:
+                return null;
+        }
+    }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 using Pathfinding;
 public enum EnemyType { 
     GunEnemy,
-    SwordEnemy
+    SwordEnemy,
+    MummyEnemy
 }
 public class BaseEnemy : ActorBase
 {
@@ -14,7 +15,6 @@ public class BaseEnemy : ActorBase
     public Transform targetPlayerTransform;
     public float currentAimAngle;
     public Transform myAim;
-    public SpriteRenderer avatarSpriteRenderer;
     [Header("==========PathFinder========")]
     Seeker seeker;
     Path path;
@@ -143,10 +143,10 @@ public class BaseEnemy : ActorBase
     }
     void FlipCheck()
     {
-        if ((avatarSpriteRenderer.flipX && targetPlayerTransform.position.x > transform.position.x) ||
-            (!avatarSpriteRenderer.flipX && targetPlayerTransform.position.x < transform.position.x))
+        if ((avatar.flipX && targetPlayerTransform.position.x > transform.position.x) ||
+            (!avatar.flipX && targetPlayerTransform.position.x < transform.position.x))
         {
-            avatarSpriteRenderer.flipX = !avatarSpriteRenderer.flipX;
+            avatar.flipX = !avatar.flipX;
             Transform myAimTransform = myAim.transform;
             Vector3 scale = myAimTransform.localScale;
             scale.y *= -1;
@@ -165,6 +165,7 @@ public class BaseEnemy : ActorBase
     {
         base.Death();
         GameManager.instance.spawnManager.MinusEnemiesWayCount();
+        EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.DeathEffect),transform.position);
         Destroy(gameObject);
     }
     private void OnDrawGizmos()

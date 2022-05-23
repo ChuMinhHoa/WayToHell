@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum EffectName { 
-    SwordHitEffect
+    SwordHitEffect,
+    DeathEffect,
+    EnemySpawnEffect,
+    MummySpawnEffect
 }
 [System.Serializable]
 public class EffectData
