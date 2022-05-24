@@ -20,12 +20,10 @@ public class SkillBase : MonoBehaviour
     public float currentAngle;
     public WeaponBase weaponBase;
     public virtual void UpdateSkill() {
-        if (weaponBase.isUsingSkill)
-            return;
         switch (skillState)
         {
             case SkillState.Ready:
-                if (Input.GetKeyDown(key))
+                if (Input.GetKeyDown(key) && !weaponBase.isUsingSkill)
                     skillState = SkillState.Activate;
                 break;
             case SkillState.Activate:

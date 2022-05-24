@@ -12,7 +12,7 @@ public class BaseEnemy : ActorBase
     [Header("===========Enemy=========")]
     public EnemyType enemyType;
     public float distanceToStop;
-    public Transform targetPlayerTransform;
+    public Vector3 targetPlayerPoint;
     public float currentAimAngle;
     public Transform myAim;
     [Header("==========PathFinder========")]
@@ -24,13 +24,13 @@ public class BaseEnemy : ActorBase
     {
         base.Start();
         property.LoadData(ProfileManager.instance.enemyProfile.GetEnemyData(enemyType).property);
-        targetPlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        targetPlayerPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
         InvokeRepeating("UpdatePath", 0, 0.5f);
         seeker = GetComponent<Seeker>();
     }
     public virtual void UpdatePath() {
-        if (seeker.IsDone() && targetPlayerTransform != null)
-            seeker.StartPath(rb.position, targetPlayerTransform.position, OnPathComplete);
+        if (seeker.IsDone() && targetPlayerPoint != Vector3.zero)
+            seeker.StartPath(rb.position, targetPlayerPoint, OnPathComplete);
     }
     public virtual void OnPathComplete(Path p) {
         if (!p.error)
@@ -41,6 +41,7 @@ public class BaseEnemy : ActorBase
     }
     private void FixedUpdate()
     {
+        targetPlayerPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
         switch (state)
         {
             case ActorState.Idle:
@@ -83,7 +84,7 @@ public class BaseEnemy : ActorBase
     }
     #endregion
     #region Move
-    float distanceToTarget = 0f;
+    public float distanceToTarget = 0f;
     public override void OnMoveEnter()
     {
         base.OnMoveEnter();
@@ -98,7 +99,7 @@ public class BaseEnemy : ActorBase
         base.OnMoveExit();
     }
     public virtual void CheckEnemyStop() {
-        distanceToTarget = Vector3.Distance(transform.position, targetPlayerTransform.position);
+        distanceToTarget = Vector3.Distance(transform.position, targetPlayerPoint);
         if (stateMachine.GetCurrentState() == KnockBackState.Instance)
             return;
         if (distanceToStop >= distanceToTarget)
@@ -112,7 +113,7 @@ public class BaseEnemy : ActorBase
         if (currentWayPoint >= path.vectorPath.Count)
             return;
         Vector3 nextWayPoint = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized;
-        if (targetPlayerTransform != null)
+        if (targetPlayerPoint != Vector3.zero)
             Move(nextWayPoint);
     }
     public virtual void Move(Vector3 nextWayPoint) {
@@ -133,9 +134,9 @@ public class BaseEnemy : ActorBase
         }
     }
     public virtual void AimFollowTarget() {
-        if (targetPlayerTransform != null)
+        if (targetPlayerPoint != Vector3.zero)
         {
-            Vector3 direction = targetPlayerTransform.position - transform.position;
+            Vector3 direction = targetPlayerPoint - transform.position;
             currentAimAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             myAim.eulerAngles = new Vector3(0, 0, currentAimAngle);
             FlipCheck();
@@ -143,8 +144,8 @@ public class BaseEnemy : ActorBase
     }
     void FlipCheck()
     {
-        if ((avatar.flipX && targetPlayerTransform.position.x > transform.position.x) ||
-            (!avatar.flipX && targetPlayerTransform.position.x < transform.position.x))
+        if ((avatar.flipX && targetPlayerPoint.x > transform.position.x) ||
+            (!avatar.flipX && targetPlayerPoint.x < transform.position.x))
         {
             avatar.flipX = !avatar.flipX;
             Transform myAimTransform = myAim.transform;

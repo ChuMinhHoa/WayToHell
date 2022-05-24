@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum BulletType { 
     pistolBullet,
-    pistolBulletEnemy
+    pistolBulletEnemy,
+    sandBullet
 }
 [CreateAssetMenu(fileName = "BulletProFile", menuName = "ScriptableObjects/New Bullet Profile")]
 public class BulletProfile : ScriptableObject

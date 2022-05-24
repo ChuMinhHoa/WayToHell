@@ -23,3 +23,8 @@ MonoBehaviour:
     bulletSpeed: 150
     knockBackFloat: 0
     knockBackTime: 0.2
+  - bulletName: SandBullet
+    bulletType: 2
+    bulletSpeed: 100
+    knockBackFloat: 0
+    knockBackTime: 3
