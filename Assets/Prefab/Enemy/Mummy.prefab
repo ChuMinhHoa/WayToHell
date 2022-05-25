@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5419701008802256028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.104, y: -0.037, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7549388370413998652}
@@ -305,7 +305,7 @@ MonoBehaviour:
     weaponObject: {fileID: 0}
   aimAngle: 0
   anim: {fileID: 7295046252290056115}
-  animAttackTime: 0.12
+  animAttackTime: 0.5
   skillBases:
   - {fileID: 4714964182164155602}
   isUsingSkill: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: SandSkill
   coldDownSetting: 7
-  activateTimeSetting: 2
+  activateTimeSetting: 1.4
   coldDown: 0
   activateTime: 0
   skillState: 0
@@ -338,6 +338,9 @@ MonoBehaviour:
   currentAngle: 0
   weaponBase: {fileID: 0}
   anim: {fileID: 7295046252290056115}
+  mummy: {fileID: 2086262687}
+  sandSkillBullet: {fileID: 187245329798587987, guid: 008cd44bf6f2dde43aff1990f0ac1efc, type: 3}
+  sandBulletSpawnPoint: {fileID: 7763222962150082026}
 --- !u!95 &7295046252290056115
 Animator:
   serializedVersion: 3
@@ -451,7 +454,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.12}
@@ -482,12 +485,21 @@ MonoBehaviour:
   currentWeapon: {fileID: 8635819834562683580}
   avatar: {fileID: 3480565375622481232}
   enemyType: 2
-  distanceToStop: 0.4
-  targetPlayerTransform: {fileID: 0}
+  distanceStop:
+    maxRange: 0
+    minRange: 0
+  targetPoint: {x: 0, y: 0, z: 0}
   currentAimAngle: 0
   myAim: {fileID: 1766053171983550352}
   currentWayPoint: 0
   distanceToNextWayPoint: 0.1
+  moveBack: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  distanceToUseSkill:
+    maxRange: 0
+    minRange: 0
 --- !u!1 &6976072210271755639
 GameObject:
   m_ObjectHideFlags: 0

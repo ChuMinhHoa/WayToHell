@@ -42,7 +42,7 @@ public class SandBullet : BulletBase
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, impactRange);
         for (int i = 0; i < hits.Length; i++)
         {
-            if (hits[i].gameObject.layer > 6)
+            if (hits[i].gameObject.layer > 7)
             {
                 anim.SetTrigger("EndActivate");
                 Destroy(gameObject, 0.18f);

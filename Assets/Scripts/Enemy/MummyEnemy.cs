@@ -1,39 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class MummyEnemy : BaseEnemy
 {
     [Header("Mummy")]
-    public bool moveBack;
-    public float distanceToUsingSkill;
-    public override void Start()
+    public MaxMinRange distanceToUseSkill;
+    public override void CheckEnemyStop()
     {
-        base.Start();
-    }
-    public override void Update()
-    {
-        if (moveBack)
-        {
-            state = ActorState.Move;
-            return;
-        }
-        else { 
-            targetPlayerPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
-        }
-        base.Update();
-    }
-    public Vector3 InitPointToMoveBack() {
-        return transform.position - (targetPlayerPoint - transform.position);
-    }
-    public bool MoveBackCheck() {
-        distanceToTarget = Vector3.Distance(transform.position, targetPlayerPoint);
-        if (distanceToTarget < distanceToUsingSkill)
+        base.CheckEnemyStop();
+        Collider2D hitMax = Physics2D.OverlapCircle(transform.position,distanceToUseSkill.maxRange, whatIsPlayer);
+        Collider2D hitMin = Physics2D.OverlapCircle(transform.position,distanceToUseSkill.minRange, whatIsPlayer);
+        if (hitMin == null && hitMax != null)
+            canUseSkill = true;
+        else if (hitMin != null && hitMax != null)
         {
             moveBack = true;
-            return true;
+            canUseSkill = false;
+            return;
         }
-        moveBack = false;
-        return false;
+        else
+        {
+            state = ActorState.Move;
+        }
     }
 }

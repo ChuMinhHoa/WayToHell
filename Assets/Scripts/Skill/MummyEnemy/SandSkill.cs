@@ -7,30 +7,32 @@ public class SandSkill : SkillBase
     [Header("Sand skill")]
     public Animator anim;
     public MummyEnemy mummy;
+    public GameObject sandSkillBullet;
+    public Transform sandBulletSpawnPoint;
     public override void UpdateSkill()
     {
         switch (skillState)
         {
             case SkillState.Ready:
-                if (!weaponBase.isUsingSkill) {
-                    if (mummy.MoveBackCheck())
-                        mummy.targetPlayerPoint = mummy.InitPointToMoveBack();
-                    else { 
-                        skillState = SkillState.Activate;
-                    }
+                if (!weaponBase.isUsingSkill ) {
+                    skillState = SkillState.Activate;
                 } 
                 break;
             case SkillState.Activate:
-                Activate();
+                Activate(currentAngle);
                 activateTime = activateTimeSetting;
                 skillState = SkillState.UsingSkill;
-                
+                weaponBase.isUsingSkill = true;
                 break;
             case SkillState.UsingSkill:
                 if (activateTime > 0)
                     activateTime -= Time.deltaTime;
                 else
                 {
+                    GameObject sandBulletObject = Instantiate(sandSkillBullet, sandBulletSpawnPoint.position, Quaternion.identity);
+                    BulletBase sandBullet = sandBulletObject.GetComponent<BulletBase>();
+                    sandBulletObject.transform.eulerAngles = new Vector3(0, 0, currentAngle);
+                    sandBullet.weaponData = weaponBase.weaponData;
                     coldDown = coldDownSetting;
                     skillState = SkillState.ColdDown;
                 }
@@ -49,9 +51,9 @@ public class SandSkill : SkillBase
                 break;
         }
     }
-    public override void Activate()
+    public override void Activate(float angle)
     {
-        base.Activate();
+        base.Activate(angle);
         anim.SetTrigger("activate");
     }
 }

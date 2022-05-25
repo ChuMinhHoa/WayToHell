@@ -98,7 +98,6 @@ public class ActorBase : MonoBehaviour
     public virtual void Death() {
         anim.SetTrigger("death");
         state = ActorState.Death;
-        Debug.Log(gameObject.name + " die.");
     }
 }
 public class IdleState : State<ActorBase> {

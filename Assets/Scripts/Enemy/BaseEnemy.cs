@@ -11,8 +11,8 @@ public class BaseEnemy : ActorBase
 {
     [Header("===========Enemy=========")]
     public EnemyType enemyType;
-    public float distanceToStop;
-    public Vector3 targetPlayerPoint;
+    public MaxMinRange distanceStop;
+    public Vector3 targetPoint;
     public float currentAimAngle;
     public Transform myAim;
     [Header("==========PathFinder========")]
@@ -20,17 +20,19 @@ public class BaseEnemy : ActorBase
     Path path;
     public int currentWayPoint;
     public float distanceToNextWayPoint;
+    [HideInInspector]
+    public bool canUseSkill;
     public override void Start()
     {
         base.Start();
         property.LoadData(ProfileManager.instance.enemyProfile.GetEnemyData(enemyType).property);
-        targetPlayerPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
-        InvokeRepeating("UpdatePath", 0, 0.5f);
+        targetPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
+        InvokeRepeating("UpdatePath", 0, 0.1f);
         seeker = GetComponent<Seeker>();
     }
     public virtual void UpdatePath() {
-        if (seeker.IsDone() && targetPlayerPoint != Vector3.zero)
-            seeker.StartPath(rb.position, targetPlayerPoint, OnPathComplete);
+        if (seeker.IsDone() && targetPoint != Vector3.zero)
+            seeker.StartPath(rb.position, targetPoint, OnPathComplete);
     }
     public virtual void OnPathComplete(Path p) {
         if (!p.error)
@@ -40,8 +42,7 @@ public class BaseEnemy : ActorBase
         }
     }
     private void FixedUpdate()
-    {
-        targetPlayerPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
+    {            
         switch (state)
         {
             case ActorState.Idle:
@@ -84,7 +85,6 @@ public class BaseEnemy : ActorBase
     }
     #endregion
     #region Move
-    public float distanceToTarget = 0f;
     public override void OnMoveEnter()
     {
         base.OnMoveEnter();
@@ -98,14 +98,40 @@ public class BaseEnemy : ActorBase
     {
         base.OnMoveExit();
     }
+    [HideInInspector]
+    public bool moveBack;
+    public LayerMask whatIsPlayer;
+    public virtual void MoveBack()
+    {
+        state = ActorState.Move;
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        targetPoint = transform.position - (playerPosition - transform.position) * 2;
+        Collider2D hitMax = Physics2D.OverlapCircle(transform.position, distanceStop.maxRange, whatIsPlayer);
+        Collider2D hitMin = Physics2D.OverlapCircle(transform.position, distanceStop.minRange, whatIsPlayer);
+        if (hitMin == null && hitMax != null) {
+            moveBack = false;
+        }
+    }
     public virtual void CheckEnemyStop() {
-        distanceToTarget = Vector3.Distance(transform.position, targetPlayerPoint);
-        if (stateMachine.GetCurrentState() == KnockBackState.Instance)
+        Collider2D hitMax = Physics2D.OverlapCircle(transform.position, distanceStop.maxRange, whatIsPlayer);
+        Collider2D hitMin = Physics2D.OverlapCircle(transform.position, distanceStop.minRange, whatIsPlayer);
+        if (moveBack)
+        {
+            MoveBack();
             return;
-        if (distanceToStop >= distanceToTarget)
+        }
+        if (hitMin == null && hitMax != null)
             state = ActorState.Attack;
+        else if (hitMin != null && hitMax != null)
+        {
+            moveBack = true;
+            return;
+        }
         else
+        {
             state = ActorState.Move;
+        }
+        targetPoint = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
     public virtual void CheckNextWayPoint() {
         if (path == null)
@@ -113,7 +139,7 @@ public class BaseEnemy : ActorBase
         if (currentWayPoint >= path.vectorPath.Count)
             return;
         Vector3 nextWayPoint = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized;
-        if (targetPlayerPoint != Vector3.zero)
+        if (targetPoint != Vector3.zero)
             Move(nextWayPoint);
     }
     public virtual void Move(Vector3 nextWayPoint) {
@@ -134,18 +160,19 @@ public class BaseEnemy : ActorBase
         }
     }
     public virtual void AimFollowTarget() {
-        if (targetPlayerPoint != Vector3.zero)
+        if (targetPoint != Vector3.zero)
         {
-            Vector3 direction = targetPlayerPoint - transform.position;
+            Vector3 direction = targetPoint - transform.position;
             currentAimAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             myAim.eulerAngles = new Vector3(0, 0, currentAimAngle);
+            currentWeapon.aimAngle = currentAimAngle;
             FlipCheck();
         }
     }
     void FlipCheck()
     {
-        if ((avatar.flipX && targetPlayerPoint.x > transform.position.x) ||
-            (!avatar.flipX && targetPlayerPoint.x < transform.position.x))
+        if ((avatar.flipX && targetPoint.x > transform.position.x) ||
+            (!avatar.flipX && targetPoint.x < transform.position.x))
         {
             avatar.flipX = !avatar.flipX;
             Transform myAimTransform = myAim.transform;
@@ -171,8 +198,10 @@ public class BaseEnemy : ActorBase
     }
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, distanceStop.maxRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, distanceToStop);
+        Gizmos.DrawWireSphere(transform.position, distanceStop.minRange);
     }
 }
 

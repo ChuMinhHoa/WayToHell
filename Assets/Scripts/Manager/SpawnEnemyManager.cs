@@ -39,7 +39,6 @@ public class SpawnEnemyManager:MonoBehaviour {
             InitLevelData();
             return;
         }
-        Debug.Log("Next Way "+ levelData.wayDatas[currentWay].enemyTypes.Count);
         enemiesWayCount = levelData.wayDatas[currentWay].enemyTypes.Count;
         SpawnEnemy();
     }

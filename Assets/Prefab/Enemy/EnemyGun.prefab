@@ -225,12 +225,18 @@ MonoBehaviour:
   currentWeapon: {fileID: 4506252518725972489}
   avatar: {fileID: 4518398334042938677}
   enemyType: 0
-  distanceToStop: 1.61
-  targetPlayerTransform: {fileID: 0}
+  distanceStop:
+    maxRange: 2
+    minRange: 1.4
+  targetPoint: {x: 0, y: 0, z: 0}
   currentAimAngle: 0
   myAim: {fileID: 4518398333687019120}
   currentWayPoint: 0
   distanceToNextWayPoint: 0.2
+  moveBack: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!50 &4518398334368619377
 Rigidbody2D:
   serializedVersion: 4
@@ -262,7 +268,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.03729987}
