@@ -53,3 +53,11 @@ MonoBehaviour:
     countDownAttackTime: 4.5
     persentScrits: 50
     weaponObject: {fileID: 8884657417225594467, guid: 72a5310f1d9eeac4ba75294ba74ae959, type: 3}
+  - weaponName: Staff Fish
+    weaponType: 5
+    weaponDamage: 50
+    weaponIcon: {fileID: 0}
+    weaponSpite: {fileID: 0}
+    countDownAttackTime: 4.5
+    persentScrits: 50
+    weaponObject: {fileID: 8884657417225594467, guid: 72a5310f1d9eeac4ba75294ba74ae959, type: 3}

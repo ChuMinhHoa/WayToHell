@@ -199,12 +199,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223496243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800128204
 GameObject:
@@ -267,51 +267,38 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 4.9973383
-      outSlope: 4.9973383
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.17417917
-      value: 0.87043226
-      inSlope: 0.6608531
-      outSlope: 0.6608531
+      time: 0.72219336
+      value: 0.007895201
+      inSlope: -0.09286793
+      outSlope: -0.09286793
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.18650359
+      outWeight: 0.46273276
     - serializedVersion: 3
-      time: 0.54127634
-      value: -0.5148417
-      inSlope: -1.6562527
-      outSlope: -1.6562527
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.9753418
+      time: 1
       value: 0
-      inSlope: 1.1860923
-      outSlope: 1.1860923
-      tangentMode: 34
+      inSlope: -0.022155821
+      outSlope: -0.022155821
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.28460217
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  targetPoint: {x: 2, y: 3}
-  startPoint: {x: 0, y: 0}
-  horizontalVector: {x: 0, y: 0}
-  noisePosition: 0
-  MinNoise: {x: -3, y: -3}
-  MaxNoise: {x: 3, y: 3}
-  time: 0
-  speed: 0.3
-  offset: 0.5
+  timeSetting: 1
+  speed: 2
+  magnitudeRange:
+    maxRange: -0.5
+    minRange: 0.5
 --- !u!212 &800128206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -375,7 +362,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &800128208
 Rigidbody2D:
@@ -427,7 +414,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1125541794
 SpriteRenderer:

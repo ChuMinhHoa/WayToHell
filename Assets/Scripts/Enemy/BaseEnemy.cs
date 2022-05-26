@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-public enum EnemyType { 
-    GunEnemy,
-    SwordEnemy,
-    MummyEnemy
-}
+
 public class BaseEnemy : ActorBase
 {
     [Header("===========Enemy=========")]

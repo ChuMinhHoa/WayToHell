@@ -1,18 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum WeaponState { 
-    Idle,
-    Attack,
-    ColdDown
-}
-public enum WeaponType { 
-    Gun,
-    GunEnemy,
-    Sword,
-    SwordEnemy,
-    SwordMummy
-}
+
 public class WeaponBase : MonoBehaviour
 {
     public WeaponState weaponState;
