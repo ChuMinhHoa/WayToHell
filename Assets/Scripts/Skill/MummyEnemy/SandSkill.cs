@@ -14,9 +14,10 @@ public class SandSkill : SkillBase
         switch (skillState)
         {
             case SkillState.Ready:
-                if (!weaponBase.isUsingSkill ) {
+                if (!weaponBase.isUsingSkill ) 
+                    mummy.wantToUseSkill = true;
+                if (mummy.canUseSkill)
                     skillState = SkillState.Activate;
-                } 
                 break;
             case SkillState.Activate:
                 Activate(currentAngle);
@@ -29,23 +30,29 @@ public class SandSkill : SkillBase
                     activateTime -= Time.deltaTime;
                 else
                 {
-                    GameObject sandBulletObject = Instantiate(sandSkillBullet, sandBulletSpawnPoint.position, Quaternion.identity);
-                    BulletBase sandBullet = sandBulletObject.GetComponent<BulletBase>();
-                    sandBulletObject.transform.eulerAngles = new Vector3(0, 0, currentAngle);
-                    sandBullet.weaponData = weaponBase.weaponData;
-                    coldDown = coldDownSetting;
-                    skillState = SkillState.ColdDown;
+                    if (!mummy.moveBack)
+                    {
+                        GameObject sandBulletObject = Instantiate(sandSkillBullet, sandBulletSpawnPoint.position, Quaternion.identity);
+                        BulletBase sandBullet = sandBulletObject.GetComponent<BulletBase>();
+                        sandBulletObject.transform.eulerAngles = new Vector3(0, 0, currentAngle);
+                        sandBullet.weaponData = weaponBase.weaponData;
+                        coldDown = coldDownSetting;
+                        skillState = SkillState.ColdDown;
+                    }
+                    else {
+                        skillState = SkillState.Ready;
+                    }
                 }
                 break;
             case SkillState.ColdDown:
+                mummy.wantToUseSkill = false;
+                mummy.moveBack = false;
                 anim.ResetTrigger("activate");
                 weaponBase.isUsingSkill = false;
                 if (coldDown > 0)
                     coldDown -= Time.deltaTime;
                 else
-                {
                     skillState = SkillState.Ready;
-                }
                 break;
             default:
                 break;

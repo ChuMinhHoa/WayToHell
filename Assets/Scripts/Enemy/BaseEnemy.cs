@@ -20,7 +20,7 @@ public class BaseEnemy : ActorBase
     Path path;
     public int currentWayPoint;
     public float distanceToNextWayPoint;
-    [HideInInspector]
+    //[HideInInspector]
     public bool canUseSkill;
     public override void Start()
     {
@@ -98,7 +98,7 @@ public class BaseEnemy : ActorBase
     {
         base.OnMoveExit();
     }
-    [HideInInspector]
+    //[HideInInspector]
     public bool moveBack;
     public LayerMask whatIsPlayer;
     public virtual void MoveBack()

@@ -32,7 +32,6 @@ public class SpawnEnemyManager:MonoBehaviour {
                 GameManager.instance.mapManager.InitData();
                 return;
             }
-            Debug.Log("Next Level");
             ProfileManager.instance.playerProfile.levelInMap += 1;
             ProfileManager.instance.playerProfile.SaveProfile();
             mapData.levelMapCurrent += 1;
@@ -46,7 +45,6 @@ public class SpawnEnemyManager:MonoBehaviour {
         enemiesWayCount -= 1;
         if (enemiesWayCount == 0)
         {
-            Debug.Log("NextWay");
             InitWayData();
         }
     }

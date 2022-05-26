@@ -443,7 +443,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &6790620711183261817
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -486,20 +486,22 @@ MonoBehaviour:
   avatar: {fileID: 3480565375622481232}
   enemyType: 2
   distanceStop:
-    maxRange: 0
-    minRange: 0
+    maxRange: 0.4
+    minRange: 0.3
   targetPoint: {x: 0, y: 0, z: 0}
   currentAimAngle: 0
   myAim: {fileID: 1766053171983550352}
   currentWayPoint: 0
   distanceToNextWayPoint: 0.1
+  canUseSkill: 0
   moveBack: 0
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   distanceToUseSkill:
-    maxRange: 0
-    minRange: 0
+    maxRange: 1.6
+    minRange: 1
+  wantToUseSkill: 1
 --- !u!1 &6976072210271755639
 GameObject:
   m_ObjectHideFlags: 0
