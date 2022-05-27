@@ -26,3 +26,11 @@ public enum BulletType
     pistolBulletEnemy,
     sandBullet
 }
+public enum EffectName
+{
+    SwordHitEffect,
+    DeathEffect,
+    EnemySpawnEffect,
+    MummySpawnEffect,
+    FishBulletBoomEffect
+}

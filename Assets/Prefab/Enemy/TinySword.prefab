@@ -92,17 +92,18 @@ MonoBehaviour:
   avatar: {fileID: 6790420259729023880}
   enemyType: 1
   distanceStop:
-    maxRange: 0
-    minRange: 0
+    maxRange: 0.4
+    minRange: 0.3
   targetPoint: {x: 0, y: 0, z: 0}
   currentAimAngle: 0
   myAim: {fileID: 6790420260460943219}
   currentWayPoint: 0
   distanceToNextWayPoint: 0.2
+  canUseSkill: 0
   moveBack: 0
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!50 &6790420259269752250
 Rigidbody2D:
   serializedVersion: 4

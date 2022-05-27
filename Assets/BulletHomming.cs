@@ -21,7 +21,6 @@ public class BulletHomming : BulletBase
         Vector2 direction = targetPoint - startPoint;
         horizontalVector = Vector2.Perpendicular(direction);
         magnitude = Random.Range(magnitudeRange.minRange, magnitudeRange.maxRange);
-        Destroy(gameObject, 2f);
     }
     public override void FixedUpdate()
     {
@@ -29,7 +28,7 @@ public class BulletHomming : BulletBase
         {
             noisePosition = noiseCurve.Evaluate(time);
             transform.position = Vector3.Lerp(startPoint, targetPoint, positionCurve.Evaluate(time)) +
-                new Vector3(noisePosition*horizontalVector.x * magnitude, noisePosition * horizontalVector.y * magnitude);
+                new Vector3(noisePosition * horizontalVector.x * magnitude, noisePosition * horizontalVector.y * magnitude);
             time += Time.deltaTime * speed;
             Vector2 nextPoint = Vector3.Lerp(startPoint, targetPoint, positionCurve.Evaluate(time)) +
                 new Vector3(noiseCurve.Evaluate(time) * horizontalVector.x * magnitude, noiseCurve.Evaluate(time) * horizontalVector.y * magnitude);
@@ -37,7 +36,26 @@ public class BulletHomming : BulletBase
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0, 0, angle);
         }
+        else {
+            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.FishBulletBoomEffect), transform.position);
+            CameraControllerCustom.instance.ShakeScene(4f);
+            Destroy(gameObject);
+        }
         ImpactOther();
+    }
+    public override void ImpactOther()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, impactRange, whatCanDamaged);
+        if (hit != null)
+        {
+            ActorBase thisActor = hit.GetComponent<ActorBase>();
+            float damage = weaponData.GetDamaged();
+            thisActor.MinusHealth(damage);
+            Vector3 direction = (hit.transform.position - transform.position).normalized * bulletData.knockBackFloat;
+            thisActor.KnockBack(direction, bulletData.knockBackTime);
+            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.FishBulletBoomEffect), transform.position);
+            Destroy(gameObject);
+        }
     }
     public void Settarget(Vector2 target) {
         targetPoint = target;

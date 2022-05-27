@@ -11,6 +11,8 @@ public class EffectManager : MonoBehaviour
         instance = this;
     }
     public void InstatiateEffect(EffectData effectData, Vector3 position) {
+        if (effectData == null)
+            return;
         GameObject effectObj = Instantiate(effectData.effect, position, Quaternion.identity);
         Destroy(effectObj, effectData.effectTimeAnim);
     }
