@@ -32,5 +32,6 @@ public enum EffectName
     DeathEffect,
     EnemySpawnEffect,
     MummySpawnEffect,
-    FishBulletBoomEffect
+    FishBulletBoomEffect,
+    ShotEffect
 }

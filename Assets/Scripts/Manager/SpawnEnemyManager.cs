@@ -49,15 +49,20 @@ public class SpawnEnemyManager:MonoBehaviour {
         }
     }
     #region spawn enemy
-    public void SpawnEnemy() {
-        for (int i = 0; i < enemiesWayCount; i++)
+    public bool spawn;
+    public void SpawnEnemy() 
+    {
+        if (spawn)
         {
-            EnemyType enemyType = levelData.wayDatas[currentWay].enemyTypes[i];
-            GameObject enemyObject = ProfileManager.instance.enemyProfile.GetEnemyData(enemyType).enemyPrefab;
-            Vector3 spawnPoint = RandomPositionSpawn();
-            EffectData effectData = EffectManager.instance.GetEffectData(enemyType);
-            EffectManager.instance.InstatiateEffect(effectData, spawnPoint);
-            StartCoroutine(SpawnAtterEffect(enemyObject, spawnPoint));
+            for (int i = 0; i < enemiesWayCount; i++)
+            {
+                EnemyType enemyType = levelData.wayDatas[currentWay].enemyTypes[i];
+                GameObject enemyObject = ProfileManager.instance.enemyProfile.GetEnemyData(enemyType).enemyPrefab;
+                Vector3 spawnPoint = RandomPositionSpawn();
+                EffectData effectData = EffectManager.instance.GetEffectData(enemyType);
+                EffectManager.instance.InstatiateEffect(effectData, spawnPoint);
+                StartCoroutine(SpawnAtterEffect(enemyObject, spawnPoint));
+            }
         }
     }
     IEnumerator SpawnAtterEffect(GameObject enemy, Vector3 spawnPoint) {

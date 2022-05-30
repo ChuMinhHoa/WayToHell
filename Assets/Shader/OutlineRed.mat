@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlowCyan
-  m_Shader: {fileID: -6465566751694194690, guid: b01574d5f83b1164ca5f049addb932b7, type: 3}
+  m_Name: OutlineRed
+  m_Shader: {fileID: -6465566751694194690, guid: 0cf3c40ecc63e2c41a1d9f688981000f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,12 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Main_Tex:
-        m_Texture: {fileID: 2800000, guid: faab98fd634537e41a50e128bcfc2fc8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: faab98fd634537e41a50e128bcfc2fc8, type: 3}
+        m_Texture: {fileID: 2800000, guid: b1df67e10e0f5544fbcc96fd4b56d7d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -40,8 +36,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2bc3a6200b2d4a0fba930c17f94b3b18: 50
+    - Vector1_032730a9bc624e879b839c8a86672648: 0.69
+    - Vector1_26244f858f6e43e581883872e99b2341: 2
+    - Vector1_a3fe6ca282b84a289b05e51a0897bad9: 5
+    - Vector1_b6847a2745fe4538a1335ec93e8442f3: 3
     m_Colors:
-    - Color_872617232b1d4913a220cb5661356149: {r: 0, g: 0.8272252, b: 1, a: 1}
-    - Color_bc8e54aae71741619c21fdc1578343e5: {r: 0.19607843, g: 0.6666667, b: 0.7490196, a: 0}
+    - Color_aa12cf6b0d164b288c5fdbb67ca735e2: {r: 1024, g: 0, b: 0, a: 0}
+    - Vector2_7409a9d6a4314348b1f0b534be287cd0: {r: -2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []

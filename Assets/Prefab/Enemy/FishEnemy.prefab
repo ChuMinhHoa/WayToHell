@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dd13532215543ee47858968bce437f89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 165081403}
   - component: {fileID: 165081406}
   - component: {fileID: 1967226444}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: FishEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ public class EffectManager : MonoBehaviour
     public void InstatiateEffect(EffectData effectData, Vector3 position) {
         if (effectData == null)
             return;
-        GameObject effectObj = Instantiate(effectData.effect, position, Quaternion.identity);
+        GameObject effectObj = Instantiate(effectData.effect, position, effectData.effect.transform.rotation);
         Destroy(effectObj, effectData.effectTimeAnim);
     }
     public EffectData GetEffectData(EffectName effectName) {

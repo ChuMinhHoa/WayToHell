@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4518398334368619377}
   - component: {fileID: 4518398334368619382}
   - component: {fileID: 4518398334368619381}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: EnemyGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,6 +233,7 @@ MonoBehaviour:
   myAim: {fileID: 4518398333687019120}
   currentWayPoint: 0
   distanceToNextWayPoint: 0.2
+  canUseSkill: 0
   moveBack: 0
   whatIsPlayer:
     serializedVersion: 2

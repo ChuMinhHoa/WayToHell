@@ -85,17 +85,18 @@ MonoBehaviour:
     weaponIcon: {fileID: 0}
     weaponSpite: {fileID: 0}
     countDownAttackTime: 0
-    attackRange: 0
     persentScrits: 0
     weaponObject: {fileID: 0}
   aimAngle: 0
   anim: {fileID: 4780813931066146195}
   animAttackTime: 0.5
+  skillBases: []
+  isUsingSkill: 0
   checkDamagePoint: {fileID: 5682428532863608936}
   checkDamageRange: 0.15
   whatCanDamage:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 3200
   knockBackFloat: 2
   knockBackTime: 0.1
 --- !u!95 &4780813931066146195
@@ -167,7 +168,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3ba4bbf255520584aa34323d590ef527, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,7 +190,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 101
   m_Sprite: {fileID: -3664594969507694454, guid: 483ae942b906a644084bc5cc186873a8, type: 3}
-  m_Color: {r: 0, g: 0.9344721, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

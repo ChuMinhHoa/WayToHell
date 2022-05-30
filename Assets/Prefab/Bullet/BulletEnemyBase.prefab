@@ -54,7 +54,6 @@ MonoBehaviour:
     weaponIcon: {fileID: 0}
     weaponSpite: {fileID: 0}
     countDownAttackTime: 0
-    attackRange: 0
     persentScrits: 0
     weaponObject: {fileID: 0}
   bulletData:
@@ -109,7 +108,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 101
   m_Sprite: {fileID: 21300000, guid: faab98fd634537e41a50e128bcfc2fc8, type: 3}
-  m_Color: {r: 0, g: 0.071937084, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

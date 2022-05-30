@@ -9,6 +9,7 @@ public class BulletBase : MonoBehaviour
     public BulletData bulletData;
     public Rigidbody2D rb_Bullet;
     public LayerMask whatCanDamaged;
+    public LayerMask whatCanDestroy;
     public float impactRange;
     public virtual void Start() {
         InitData();
@@ -34,7 +35,7 @@ public class BulletBase : MonoBehaviour
             thisActor.KnockBack(direction, bulletData.knockBackTime);
             Destroy(gameObject);
         }
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, impactRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, impactRange, whatCanDestroy);
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].gameObject.layer > 6)
