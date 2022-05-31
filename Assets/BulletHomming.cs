@@ -14,6 +14,8 @@ public class BulletHomming : BulletBase
     private float noisePosition;
     private float time;
     private float magnitude;
+    public EffectName effectCreateAffterImpact;
+    public float damage;
     public override void Start()
     {
         time = 0f;
@@ -37,7 +39,7 @@ public class BulletHomming : BulletBase
             transform.eulerAngles = new Vector3(0, 0, angle);
         }
         else {
-            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.FishBulletBoomEffect), transform.position);
+            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(effectCreateAffterImpact), transform.position);
             CameraControllerCustom.instance.ShakeScene(4f);
             Destroy(gameObject);
         }
@@ -49,11 +51,12 @@ public class BulletHomming : BulletBase
         if (hit != null)
         {
             ActorBase thisActor = hit.GetComponent<ActorBase>();
-            float damage = weaponData.GetDamaged();
+            damage += weaponData.GetDamaged();
             thisActor.MinusHealth(damage);
             Vector3 direction = (hit.transform.position - transform.position).normalized * bulletData.knockBackFloat;
             thisActor.KnockBack(direction, bulletData.knockBackTime);
-            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(EffectName.FishBulletBoomEffect), transform.position);
+            EffectManager.instance.InstatiateEffect(EffectManager.instance.GetEffectData(effectCreateAffterImpact), transform.position);
+            CameraControllerCustom.instance.ShakeScene(4f);
             Destroy(gameObject);
         }
     }

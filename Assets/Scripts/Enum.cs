@@ -33,5 +33,6 @@ public enum EffectName
     EnemySpawnEffect,
     MummySpawnEffect,
     FishBulletBoomEffect,
-    ShotEffect
+    ShotEffect,
+    NoWhereBulletBoomEffect
 }
